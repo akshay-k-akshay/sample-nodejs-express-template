@@ -1,0 +1,40 @@
+{
+  "name": "sample-project-template",
+  "version": "1.0.0",
+  "description": "sample project structure ",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "nodemon --config nodemon.json",
+    "start": "node src/server.js",
+    "lint": "eslint . --ext .ts,.js",
+    "lint:fix": "npm run lint -- --fix",
+    "prettier": "prettier --check .",
+    "prettier:write": "prettier --write ."
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "Akshay K",
+  "license": "MIT",
+  "dependencies": {
+    "convict": "^5.2.1",
+    "convict-format-with-validator": "^6.2.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "helmet": "^4.6.0",
+    "http-status-codes": "^2.1.4",
+    "mongoose": "^5.13.5",
+    "morgan": "^1.10.0",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "nodemon": "^2.0.12",
+    "prettier": "^2.3.2"
+  },
+  "keywords": [
+    "nodejs",
+    "express js"
+  ]
+}
