@@ -26,10 +26,10 @@ if (env == "prod") {
 
 module.exports = {
   dbConfig: () => {
-    connect(dbUrl, params);
+    connect(`${dbUrl}-${env}`, params);
 
     connection.on("connected", function () {
-      logger.info(`DB has been connected to ${dbUrl}`);
+      logger.info(`DB has been connected to ${dbUrl}-${env}`);
     });
   }
 };

@@ -12,7 +12,7 @@ const schema = {
   },
   node_env: {
     doc: "The application environment.",
-    format: ["dev", "prod"],
+    format: ["dev", "prod", "test"],
     default: "dev",
     env: "NODE_ENV"
   },

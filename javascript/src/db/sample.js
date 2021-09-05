@@ -9,7 +9,18 @@ module.exports = {
     return await sample.save();
   },
 
-  list: async () => {
-    return await Sample.find();
+  list: async (limit, skip) => {
+    const total = await Sample.countDocuments({});
+    const samples = await Sample.find({}, "_id title createdAt", {
+      skip,
+      limit
+    });
+    return {
+      data: samples,
+      meta: {
+        total,
+        limit
+      }
+    };
   }
 };
