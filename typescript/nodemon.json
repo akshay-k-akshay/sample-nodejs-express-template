@@ -2,5 +2,5 @@
   "watch": ["src"],
   "ext": "ts",
   "ignore": ["src/public"],
-  "exec": "ts-node src/server.ts"
+  "exec": "set DEBUG=http & set NODE_ENV=dev && ts-node src/server.ts"
 }

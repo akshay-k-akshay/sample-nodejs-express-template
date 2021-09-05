@@ -8,7 +8,7 @@ export async function create(req: Request, res: Response, next: NextFunction) {
     const sampleData = req.body;
     const result = await sampleService.create(sampleData);
     return res.status(StatusCodes.OK).json({
-      message: "pong",
+      message: "sample data saved successfully",
       data: result
     });
   } catch (error) {
@@ -18,10 +18,14 @@ export async function create(req: Request, res: Response, next: NextFunction) {
 
 export async function list(req: Request, res: Response, next: NextFunction) {
   try {
-    const result = await sampleService.list();
+    const { limit, page } = req.query;
+    const result = await sampleService.list(
+      Number(limit) || 5,
+      Number(page) || 1
+    );
     return res.status(StatusCodes.OK).json({
-      message: "ping",
-      data: result
+      message: "fetched sample data successfully",
+      ...result
     });
   } catch (error) {
     next(error);

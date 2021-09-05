@@ -3,13 +3,13 @@ import { connect, connection } from "mongoose";
 import { config } from "./app-config";
 import { logger } from "./winston";
 
+// environment
+const env = config.get("node_env");
+
 // dbUrl and credentials
 const dbUrl = config.get("db.url");
 const user = config.get("db.user");
 const password = config.get("db.password");
-
-// environment
-const env = config.get("node_env");
 
 // default params for mongodb
 const params: any = {
@@ -25,9 +25,9 @@ if (env == "prod") {
 }
 
 export function dbConfig() {
-  connect(dbUrl, params);
+  connect(`${dbUrl}-${env}`, params);
 
   connection.on("connected", function () {
-    logger.info(`DB has been connected to ${dbUrl}`);
+    logger.info(`DB has been connected to ${dbUrl}-${env}`);
   });
 }
