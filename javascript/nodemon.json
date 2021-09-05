@@ -2,5 +2,5 @@
   "watch": ["src"],
   "ext": "js",
   "ignore": ["src/public"],
-  "exec": "node src/server.js"
+  "exec": "set DEBUG=http & set NODE_ENV=dev && node src/server.js"
 }

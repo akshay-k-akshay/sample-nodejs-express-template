@@ -19,7 +19,8 @@ const logFormat =
 const logger = createLogger({
   transports: [new transports.Console(options)],
   format: logFormat,
-  exitOnError: false
+  exitOnError: false,
+  silent: process.env.NODE_ENV === "test"
 });
 
 const morganOption = {

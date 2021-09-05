@@ -1,15 +1,20 @@
-exports = class NotFoundError extends Error {
+class NotFoundError extends Error {
   constructor(message) {
     super(message);
     this.name = "NotFoundError";
     Object.setPrototypeOf(this, new.target.prototype);
   }
-};
+}
 
-exports = class BadRequestError extends Error {
+class BadRequestError extends Error {
   constructor(message) {
     super(message);
     this.name = "BadRequestError";
     Object.setPrototypeOf(this, new.target.prototype);
   }
+}
+
+module.exports = {
+  BadRequestError,
+  NotFoundError
 };

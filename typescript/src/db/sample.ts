@@ -6,6 +6,17 @@ export async function create(sampleData: SampleType) {
   return await sample.save();
 }
 
-export async function list() {
-  return await Sample.find();
+export async function list(limit: number, skip: number) {
+  const total = await Sample.countDocuments({});
+  const samples = await Sample.find({}, "_id title createdAt", {
+    skip,
+    limit
+  });
+  return {
+    data: samples,
+    meta: {
+      total,
+      limit
+    }
+  };
 }

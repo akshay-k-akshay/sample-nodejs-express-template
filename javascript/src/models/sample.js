@@ -1,12 +1,12 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model, models } = require("mongoose");
 
-const now = Date.now();
+const { now } = require("../utils");
 
 const sampleSchema = new Schema({
   title: { type: String },
-  createdAt: { type: String, default: now }
+  createdAt: { type: Number, default: now().getTime() }
 });
 
-const Sample = model("Sample", sampleSchema);
+const Sample = models.Sample || model("Sample", sampleSchema);
 
 module.exports = { Sample };

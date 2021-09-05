@@ -1,0 +1,10 @@
+---
+# require:
+#   -
+extensions:
+  - js
+spec:
+  - tests/**/*.test.*
+watch-files:
+  - src
+  - tests
