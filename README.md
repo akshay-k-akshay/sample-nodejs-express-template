@@ -30,7 +30,7 @@ npm run lint:fix
 To run in development mode use:
 
 ```bash
-npm run develop
+npm run dev
 ```
 
 ## Test
