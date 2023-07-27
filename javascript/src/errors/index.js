@@ -1,20 +1,46 @@
+const Errors = {
+  NOT_FOUND: "NotFoundError",
+  BAD_REQUEST: "BadRequestError",
+  UNAUTHORIZED: "UnAuthorizedError",
+  FORBIDDEN: "ForbiddenError"
+};
+
 class NotFoundError extends Error {
-  constructor(message) {
+  constructor(message, args) {
     super(message);
-    this.name = "NotFoundError";
-    Object.setPrototypeOf(this, new.target.prototype);
+    this.name = Errors.NOT_FOUND;
+    this.args = args;
   }
 }
 
 class BadRequestError extends Error {
-  constructor(message) {
+  constructor(message, args) {
     super(message);
-    this.name = "BadRequestError";
-    Object.setPrototypeOf(this, new.target.prototype);
+    this.name = Errors.BAD_REQUEST;
+    this.args = args;
+  }
+}
+
+class UnAuthorizedError extends Error {
+  constructor(message, args) {
+    super(message);
+    this.name = Errors.UNAUTHORIZED;
+    this.args = args;
+  }
+}
+
+class ForbiddenError extends Error {
+  constructor(message, args) {
+    super(message);
+    this.name = Errors.FORBIDDEN;
+    this.args = args;
   }
 }
 
 module.exports = {
+  Errors,
   BadRequestError,
-  NotFoundError
+  ForbiddenError,
+  NotFoundError,
+  UnAuthorizedError
 };

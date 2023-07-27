@@ -1,6 +1,6 @@
 const { createLogger, format, transports } = require("winston");
 
-const { config } = require("./app-config");
+const config = require("../config");
 
 const options = {
   handleExceptions: true,
@@ -27,7 +27,7 @@ const logger = createLogger({
 const morganOption = {
   stream: {
     write: function (message) {
-      logger.info(message);
+      logger.info(message.trim());
     }
   }
 };

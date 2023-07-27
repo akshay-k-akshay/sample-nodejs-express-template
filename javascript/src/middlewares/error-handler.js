@@ -1,30 +1,28 @@
-const { StatusCodes } = require("http-status-codes");
+const { logger } = require("../config");
+const { Errors } = require("../errors");
+const {
+  BadRequestResponse,
+  ForbiddenResponse,
+  InternalErrorResponse,
+  NotFoundResponse,
+  UnAuthorizedResponse
+} = require("./response-handler");
 
-const { NotFoundError, BadRequestError } = require("../errors");
-const { logger } = require("../config/winston");
-
-function errorHandler(error, req, res, next) {
+// eslint-disable-next-line
+function errorHandler(error, _req, res, _next) {
   logger.error(error);
-
-  switch (error.constructor) {
-    case NotFoundError:
-      return res.status(StatusCodes.NOT_FOUND).json({
-        message: error.message
-      });
-
-    case BadRequestError:
-      return res.status(StatusCodes.BAD_REQUEST).json({
-        message: error.message
-      });
-
+  switch (error.name) {
+    case Errors.UNAUTHORIZED:
+      return UnAuthorizedResponse(res, error.message, error.args);
+    case Errors.NOT_FOUND:
+      return NotFoundResponse(res, error.message, error.args);
+    case Errors.BAD_REQUEST:
+      return BadRequestResponse(res, error.message, error.args);
+    case Errors.FORBIDDEN:
+      return ForbiddenResponse(res, error.message, error.args);
     default:
-      res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-        message: error.message
-      });
+      return InternalErrorResponse(res, "Something Went Wrong", error.args);
   }
-
-  next();
 }
-module.exports = {
-  errorHandler
-};
+
+module.exports = errorHandler;

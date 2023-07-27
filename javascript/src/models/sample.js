@@ -1,11 +1,11 @@
 const { Schema, model, models } = require("mongoose");
 
-const { now } = require("../utils");
-
-const sampleSchema = new Schema({
-  title: { type: String },
-  createdAt: { type: Number, default: now().getTime() }
-});
+const sampleSchema = new Schema(
+  {
+    title: { type: String }
+  },
+  { timestamps: true }
+);
 
 const Sample = models.Sample || model("Sample", sampleSchema);
 
