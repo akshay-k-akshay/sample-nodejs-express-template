@@ -1,4 +1,4 @@
-# Sample Nodejs express Template with Javascript and Typescript
+# Sample Nodejs express Template with Javascript
 
 for install Dependency
 
